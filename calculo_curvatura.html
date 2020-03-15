@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curvatura da Terra</title>
+
+<!------- TO DO: CRIAR ARQUIVO .CSS -------->
+
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: normal;
+            color: #444;
+        }
+        table {
+            background-color: #eeeeee;
+            border-collapse: collapse;
+            border: 1px solid rgb(168, 164, 164);
+        }    
+        tr {
+            border: 1px solid rgb(168, 164, 164);
+        }
+      
+        .titulo {
+            margin-left: 10px;
+        }
+        .LINE_1 {
+            height: 150px;
+        }
+
+        .LINE_2 {
+            height: 100px;
+        }
+
+        .COLUMN_A {
+            width: 520px;
+        }
+
+        .COLUMN_B {
+            width: 400px;
+            margin-left: 30px;         
+        }
+
+        .cell_A2a {
+            vertical-align: top;
+        }
+
+        input{
+            border:1.1px solid #999999;
+            border-radius: 3.5px;
+            padding: 3px;
+            margin: 10px;
+            font-size: 1rem;
+            text-align: right;
+        }   
+        input::placeholder{
+            color:#999999;
+            font-style: italic;
+        }   
+
+        label{
+            color:#444;
+            margin-left: 15px;
+            font-size: 1rem;
+        }
+
+        #calc_k_label{
+            color:#444;
+            width: 50px;
+
+            margin: 0px;
+            margin-left: 0px;
+            font-size: .8rem;
+        }
+        .entrada{
+            width: 150px;
+        }
+
+        #h_observ{
+            margin-left: 111px;
+        }
+        #d_alvo{
+            margin-left: 137px;
+        }
+        #h_alvo{
+            margin-left: 161px;
+        }
+        #coef_k1{
+            margin-left: 75px;
+        }
+        #coef_k2{
+            margin-left: 75px;
+        }   
+        #coef_k2::placeholder{
+            color: #444;
+            font-style: normal;
+        }
+        #pressao{
+            margin-left: 109px;
+        }
+        #temperatura{
+            margin-left: 95px;
+        }
+        #gradiente{
+            margin-left: 11px;
+        }
+        button{ 
+            width: 20%;
+            height: 35px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            margin-left: 70px;
+            background-color: #333586;
+            box-shadow: 2px 2px #888888;
+
+        }
+    </style>
+
+<!------------------------------------------>
+
+</head>
+
+<body>
+    
+    <table>
+        <!------ LINHA 1 ------>        
+        <tr>           
+            <!-- CÉLULA A1 -->
+            <td class="LINE_1"> 
+                <div class="COLUMN_A">
+                    <div class="titulo">
+                        <h4 >Cálculo considerando apenas a geometria da Terra</h4>
+                    </div>
+                    <div>
+                        <label for="h_observ">Altura do observador</label>
+                        <input type="text" id="h_observ" class="entrada" placeholder='1.75 '> m
+                    </div>
+                    <div>
+                        <label for="d_alvo">Distância do alvo</label>
+                        <input type="text" id="d_alvo" class="entrada" placeholder='20.0 '> km
+                    </div>
+                    <div>
+                        <label for="d_alvo">Altura do alvo</label>
+                        <input type="text" id="h_alvo" class="entrada" placeholder='opcional '> m
+                    </div>
+                </div>
+            </td>
+            <!-- CÉLULA B1 -->            
+            <td class="LINE_1">
+                <div class="COLUMN_B"></div>                
+                    <p id="d_hor" class="COLUMN_B"> </p>
+                    <p id="h_oculta" class="COLUMN_B"> </p> 
+                </div>
+            </td>
+        </tr>
+        <!------ LINHA 2 ------>   
+        <tr>
+            <!--- CÉLULA A2 --->                        
+            <td id="cell_A2a" class="LINE_2">
+                <div class="titulo">
+                    <h4 >Cálculo considerando os efeitos da Refração Atmosférica</h4>
+                </div>
+                <div id="cell_A2_0">
+                    <form action="/action_page.php">
+                        <input type="checkbox" id="calc_k" unchecked onchange="modificar()">
+                        <label for="calc_k" id=calc_k_label><strong>Calcular o Coeficiente de Refração 'k' 
+                            através dos parâmetros meteorológicos</strong>
+                        </label><br><br>
+                    </form> 
+                <!--- seção 1 --->  
+                </div>                                             
+                <div id="cell_A2_1">
+                    <label for="coef_k">Coeficiente de refração 'k'</label>
+                    <input type="text" id="coef_k1" class="entrada" placeholder='0.143 '>
+                </div> 
+                <!--- seção 2 ---> 
+            <div id="cell_A2b">                                       
+                <div id="cell_A2_2">    
+                    <label for="coef_k">Pressão atmosférica:</label>
+                    <input type="text" id="pressao" class="entrada" placeholder='1 atm = 101325 '> Pa
+                <!--- seção 3 --->                                       
+                <div id="cell_A2_3">
+                    <label for="coef_k">Temperatura ambiente:</label>
+                    <input type="text" id="temperatura" class="entrada" placeholder='20.0 '> °C
+                </div>          
+                <!--- seção 4 --->                                        
+                <div id="cell_A2_4">
+                    <label for="coef_k">Gradiente Vertical de Temperatura:</label>
+                    <input type="text" id="gradiente" class="entrada" placeholder='-0.0065 '> °C/m
+                </div> 
+                <!--- seção 4 --->                                        
+                <div id="cell_A2_5">
+                    <label for="coef_k">Coeficiente de refração 'k'</label>
+                    <input type="text" id="coef_k2" class="entrada" value=''>
+                </div>
+            </div>
+            </td>             
+            <!--- CÉLULA B2 --->                               
+            <td class="LINE_2">
+                <div>
+                    <p id="d_hor_ref" class="COLUMN_B"> </p>                              
+                    <p id="h_oculta_ref" class="COLUMN_B"> </p>  
+                </div>        
+            </td>            
+        </tr>
+    </table>
+ 
+    <br>
+    <div>                        
+        <button onclick="clicar()">CALCULAR</button>
+    </div>
+
+<p id="teste1"></p>
+<p id="teste2"></p>
+
+<!------- TO DO: CRIAR ARQUIVO .JS --------->
+
+    <script>
+
+        var change
+
+        if (change == undefined){
+            /* Fornecer valor de 'k' */
+            document.getElementById('cell_A2_5').style.display='none';
+            document.querySelector('#cell_A2b').style.display='none';  
+        }
+    
+        var complet_calc = false; 
+    
+        function modificar() {
+
+            complet_calc = document.getElementById("calc_k").checked;       
+            if (complet_calc == true) {
+                document.getElementById('cell_A2_5').style.display='block';
+                document.querySelector('#cell_A2b').style.display='block';  
+                /* Calcular valor de 'k' */
+                document.getElementById('cell_A2_1').style.display='none';
+                document.getElementById('coef_k2').disabled = 'disabled';
+                 
+            } else {
+                document.getElementById('cell_A2_1').style.display='block';
+                document.getElementById('coef_k2').disabled = 'enabled';    
+                /* Fornecer valor de 'k' */
+                document.getElementById('cell_A2_5').style.display='none';
+                document.querySelector('#cell_A2b').style.display='none';             
+            }
+        }
+
+        function clicar(){ 
+
+        /* GEOMETRIA */
+        
+            var h_observ = parseFloat(document.querySelector("#h_observ").value);
+            var d_alvo = parseFloat(document.querySelector("#d_alvo").value) * 1000;
+
+
+            if (isNaN(h_observ) == true) {
+                h_observ = 1.75;
+            }
+
+            if (isNaN(d_alvo) == true) {
+                d_alvo = 20 * 1000;
+            }
+
+            var r_terra = 6371000;
+            var d_hor = ((r_terra + h_observ) ** 2 - r_terra ** 2) ** 0.5;
+            var h_oculta = (r_terra ** 2 + (d_alvo - d_hor) ** 2) ** 0.5 - r_terra;
+
+            d_hor2 = (d_hor * 0.001).toFixed(2);
+            h_oculta = h_oculta.toFixed(2);
+            document.querySelector("#d_hor").innerHTML = "Distância do horizonte: " + d_hor2 + " km";
+
+            if(d_alvo > d_hor){
+                document.querySelector("#h_oculta").innerHTML = "Altura oculta: " + h_oculta + " m";               
+            } else {
+                document.querySelector("#h_oculta").innerHTML = "O alvo se encontra ANTES do horizonte, portanto é visível em sua totalidade.";   
+            }
+
+        /* REFRAÇÃO */
+        
+            if (complet_calc == false) {
+                var coef_k = parseFloat(document.querySelector("#coef_k1").value);
+                if (isNaN(coef_k) == true) {
+                    coef_k = 0.143;  
+                }   
+                if (coef_k >=1) {
+                    coef_k = 0.9999999;
+                    document.getElementById("coef_k1").value = "k → 1.00"; 
+                } 
+            } else {
+                var pressao = document.querySelector("#pressao").value;
+                var temperatura = document.querySelector("#temperatura").value;
+                var gradiente = document.querySelector("#gradiente").value;
+
+                if (isNaN(parseFloat(pressao)) == true) {
+                    pressao = 1013.25
+                } else {
+                    pressao = parseFloat(pressao) * 0.01                    
+                }
+
+                if (isNaN(parseFloat(temperatura)) == true) {
+                    temperatura = 20 + 273.15
+                } else {
+                    temperatura = parseFloat(temperatura) + 273.15                    
+                }
+
+                if (isNaN(parseFloat(gradiente)) == true) {
+                    gradiente = -0.0065
+                } else {
+                    gradiente = parseFloat(gradiente)                    
+                }
+
+                var coef_k = (503 * pressao / temperatura ** 2) * (0.0343 + gradiente);
+                coef_k = coef_k.toFixed(3);
+                document.querySelector("#coef_k2").value = coef_k; 
+            }
+
+            var r_efetivo = r_terra /(1 - coef_k);
+            var d_hor_ref = ((r_efetivo + h_observ) ** 2 - r_efetivo ** 2) ** 0.5;
+            var h_oculta_ref = (r_efetivo ** 2 + (d_alvo - d_hor_ref) ** 2) ** 0.5 - r_efetivo;
+
+            d_hor_ref = (d_hor_ref * 0.001).toFixed(2);
+            h_oculta_ref = h_oculta_ref.toFixed(2);
+            document.querySelector("#d_hor_ref").innerHTML = "Distância do horizonte refratado: " + d_hor_ref + " km";
+
+            if(d_alvo > d_hor_ref * 1000){
+                document.querySelector("#h_oculta_ref").innerHTML = "Altura oculta com refração: " + h_oculta_ref + " m";               
+            } else {
+                document.querySelector("#h_oculta_ref").innerHTML = "O alvo se encontra ANTES do horizonte, portanto é visível em sua totalidade.";   
+            } 
+        }
+
+
+
+
+
+    </script>
+
+<!------------------------------------------>
+
+
+
+
+</body>
+</html>
