@@ -1,5 +1,12 @@
+<!-- VERSÃO PARA TESTES
+
+Autor: Carlos Machado Jr
+Github: https://github.com/carlosmachadojr
+    
+-->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -180,7 +187,7 @@
                 <p class="label">Raio da Terra</p>
             </td>
             <td class="c2">
-                <input type="text" id="r_terra" value=6371 placeholder='6371'>
+                <input type="text" id="r_terra" value=6371 placeholder='6371' onkeypress="return calcular(event)">
             </td>
             <td class="c3">
                 <p class="units">km</p>
@@ -192,7 +199,7 @@
                 <p class="label">Pressão Atmosférica</p>
             </td>
             <td class="c6">
-                <input type="text" id="pressao" placeholder='1 atm = 101325 '>
+                <input type="text" id="pressao" placeholder='1 atm = 101325' onkeypress="return calcular(event)">
             </td>
             <td class="c7">
                 <p class="units">Pa</p>
@@ -204,7 +211,7 @@
                 <p class="label">Altura do Observador</p>
             </td>
             <td class="c2">
-                <input type="text" id="h_observ" placeholder='1.75'>
+                <input type="text" id="h_observ" placeholder='1.75' onkeypress="calcular(event)">
             </td>
             <td class="c3">
                 <p class="units">m</p>
@@ -216,7 +223,7 @@
                 <p class="label">Temperatura ambiente</p>
             </td>
             <td class="c6">
-                <input type="text" id="temperatura" placeholder='20'>
+                <input type="text" id="temperatura" placeholder='20'  onkeypress="calcular(event)">
             </td>
             <td class="c7">
                 <p class="units">°C</p>
@@ -227,7 +234,7 @@
                 <p class="label">Distância do alvo</p>
             </td>
             <td class="c2">
-                <input type="text" id="d_alvo" placeholder='20'> 
+                <input type="text" id="d_alvo" placeholder='20'  onkeypress="calcular(event)"> 
             </td>
             <td class="c3">
                 <p class="units">km</p>
@@ -239,7 +246,7 @@
                 <p class="label">Gradiente Vertical de Temperatura</p>
             </td>
             <td class="c6">
-                <input type="text" id="gradiente" class="entrada" placeholder='-0.0065 '>
+                <input type="text" id="gradiente" class="entrada" placeholder='-0.0065' onkeypress="calcular(event)">
             </td>
             <td class="c7">
                 <p class="units"> °C/m</p>
@@ -251,7 +258,7 @@
                 <p class="label">Altura do alvo</p>
             </td>
             <td class="c2">
-                <input type="text" id="h_alvo" placeholder='opcional '>
+                <input type="text" id="h_alvo" placeholder='opcional ' onkeypress="calcular(event)">
             </td>
             <td class="c3">
                 <p class="units"></p>m</p>
@@ -263,7 +270,7 @@
                 <p class="label">Coeficiente de Refração 'k'</p>
             </td>
             <td class="c6">
-                <input type="text" id="coef_k" placeholder='0.165 '>
+                <input type="text" id="coef_k" placeholder='0.165' onkeypress="calcular(event)">
             </td>
             <td class="c7">
                 <p class="units"></p>
@@ -274,11 +281,11 @@
     <table class="rodape">
         <tr>
             <td class="td_buttom">
-                <button onclick="clicar()">CALCULAR</button>                
+                <button onclick="calcular(event)">CALCULAR</button>                
             </td>
             <td class="td_radio">
                 <form action="/action_page.php">
-                    <input type="radio" id="completo" class="radio_button" name="refr" value="1"  onchange="modificar()">
+                    <input type="radio" id="completo" class="radio_button" name="refr" value="1" onchange="modificar()">
                     <spam class="label_radio">Calcular o Coef. de Refração 'k' em função dos parâmetros meteorológicos</spam>
                     <br>   
                     <input type="radio" id="simplificado" class="radio_button" name="refr" value="2" onchange="modificar()">   
@@ -294,20 +301,46 @@
         <tr>
             <td>
     
-                    <p id="p1a" class="result"><strong>Desconsiderando os efeitos da refração atmosférica:</strong></p>
-                    <p id="p2a" class="result">O horizonte se encontra a uma distância de <spam id = "d_hor"></spam> km do observador.</p>
-                    <p id="p3a" class="result">Para um alvo localizado a <spam id = "d_alvo_result"></spam> km desse mesmo observador, há uma obstrução de <spam id = "h_oculta"></spam> metros.</p>
-                    <p id="p4a" class="result">A esta distância, um objeto de  <spam id = "h_alvo2"></spam> metros de altura terá <spam id = "h_oculta_perc"></spam>% (<spam id = "h_oculta2"></spam> m) de sua altura encoberta e <spam id = "h_visivel_perc"></spam>% ( <spam id = "h_visivel"></spam> m) visível.</p>
-    
-                    <br>
-                    
-                    <p id="p1b" class="result"><strong>Considerando os efeitos da refração atmosférica:</strong></p>
-                    <p id="p2b" class="result">O horizonte se encontra a uma distância de <spam id = "d_hor_ref"></spam> km do observador.</p>
-                    <p id="p3b" class="result">Para um alvo localizado a <spam id = "d_alvo_result2"></spam> km desse mesmo observador, há uma obstrução de <spam id = "h_oculta_ref"></spam> metros.</p>
-                    <p id="p4b" class="result">A esta distância, um objeto de  <spam id = "h_alvo_ref"></spam> metros de altura terá <spam id = "h_oculta_perc_ref"></spam>% (<spam id = "h_oculta_ref2"></spam> m) de sua altura encoberta e <spam id = "h_visivel_perc_ref"></spam>% ( <spam id = "h_visivel_ref"></spam>m) visível.</p>
+                <p id="p1a" class="result"><strong>Desconsiderando os efeitos da refração atmosférica:</strong></p>
+
+                <p id="p2a" class="result">O horizonte se encontra a uma distância de 
+                    <spam id = "d_hor"></spam> 
+                    km do observador.</p>
+
+                <p id="p3a" class="result">Para um alvo localizado a 
+                    <spam id = "d_alvo_result"></spam> km desse mesmo observador, há uma obstrução de 
+                    <spam id = "h_oculta"></spam> metros.</p>
+
+                <p id="p3aa" class="result">Para um alvo localizado a 
+                    <spam id = "d_alvo_result2"></spam> km desse mesmo observador se encontra AQUÉM do horizonte e portanto é <br>
+                    visível em sua totalidade.</p>
+
+                <p id="p4a" class="result">A esta distância, um objeto de 
+                    <spam id = "h_alvo2"></spam> metros de altura terá 
+                    <spam id = "h_oculta_perc"></spam>% (<spam id = "h_oculta2"></spam> m) de sua altura encoberta e 
+                    <spam id = "h_visivel_perc"></spam>% ( <spam id = "h_visivel"></spam> m) visível.</p><br>
+                
+                <p id="p1b" class="result"><strong>Considerando os efeitos da refração atmosférica:</strong></p>
+
+                <p id="p2b" class="result">O horizonte se encontra a uma distância de 
+                    <spam id = "d_hor_ref"></spam> km do observador.</p>
+
+                <p id="p3b" class="result">Para um alvo localizado a 
+                    <spam id = "d_alvo_result3"></spam> km desse mesmo observador, há uma obstrução de 
+                    <spam id = "h_oculta_ref"></spam> metros.</p>
+
+                <p id="p4b" class="result">A esta distância, um objeto de  
+                    <spam id = "h_alvo_ref"></spam> metros de altura terá 
+                    <spam id = "h_oculta_perc_ref"></spam>% (<spam id = "h_oculta_ref2"></spam> m) de sua altura encoberta e 
+                    <spam id = "h_visivel_perc_ref"></spam>% ( <spam id = "h_visivel_ref"></spam>m) visível.</p>
+
+                <p id="p3ba" class="result">Para um alvo localizado a 
+                    <spam id = "d_alvo_result4"></spam> km desse mesmo observador se encontra AQUÉM do horizonte e portanto é <br>
+                    visível em sua totalidade.</p>                    
 
             </td>
         </tr>
+
     </table>
 
 <!------------------------------------------>
@@ -315,7 +348,7 @@
 <!------- TO DO: CRIAR ARQUIVO .JS -------->   
 
     <script>
-
+        
         var radio_value = 1;
         document.querySelector("#completo").checked = true;
 
@@ -352,141 +385,175 @@
 
         document.querySelector("#result").style.display="none";
 
-        function clicar(){ 
-            document.querySelector("#result").style.display="block";
+        function calcular(e) { 
 
-            /* Raio da Terra */
-            var r_terra = parseFloat(document.querySelector("#r_terra").value);
-            if (isNaN(r_terra)) {
-                r_terra = 6371000;
-                document.querySelector("#r_terra").value = "6371";
-            } else {
-                r_terra = r_terra * 1000;
+            var prosseguir = true;
+
+            if (e.keyCode != 13) {
+                if (e.keyCode != null) {
+                    prosseguir = false
+                }
+            }  
+
+            if (prosseguir == true) {
+
+                document.querySelector("#result").style.display="block";
+
+                // Raio da Terra //
+                var r_terra = parseFloat(document.querySelector("#r_terra").value);
+                if (isNaN(r_terra)) {
+                    r_terra = 6371000;
+                    document.querySelector("#r_terra").value = "6371";
+                } else {
+                    r_terra = r_terra * 1000;
+                }
+
+                // Altura do Observador //
+                var h_observ = parseFloat(document.querySelector("#h_observ").value);
+                if (isNaN(h_observ)) {
+                    h_observ = 1.75;
+                    document.querySelector("#h_observ").value = 1.75;
+                }
+
+                // Distância do Alvo //
+                var d_alvo = parseFloat(document.querySelector("#d_alvo").value);
+                if (isNaN(d_alvo)) {
+                    d_alvo = 20000;
+                    document.querySelector("#d_alvo").value = 20;
+                } else {
+                    d_alvo = d_alvo * 1000;
+                }
+
+                // Altura do Alvo //
+                var h_alvo = parseFloat(document.querySelector("#h_alvo").value);
+                if (isNaN(h_alvo)) {
+                    h_alvo = false;
+                    document.querySelector("#h_alvo").value = "";
+                }
+
+                // Pressão Atmosférica //
+                var pressao = parseFloat(document.querySelector("#pressao").value);
+                if (radio_value == 2) {
+                    document.querySelector("#pressao").value = " ";
+                } else {
+                    if (isNaN(pressao)) {
+                        pressao = 101325;
+                        document.querySelector("#pressao").value = 101325; 
+                    }              
+                    pressao = pressao * 0.01 
+                }
+
+                // Temperatura Ambiente //
+                var temperatura = parseFloat(document.querySelector("#temperatura").value);
+                if (radio_value == 2) {
+                    document.querySelector("#temperatura").value = " ";
+                } else {
+                    if (isNaN(temperatura)) {
+                        temperatura = 20;
+                        document.querySelector("#temperatura").value = 20; 
+                    }              
+                    temperatura = temperatura + 273.15 
+                }
+
+                // Gradiente Vertical de Temperatura //
+                var gradiente = parseFloat(document.querySelector("#gradiente").value);
+                if (radio_value == 2) {
+                    document.querySelector("#gradiente").value = " ";
+                } else {
+                    if (isNaN(gradiente)) {
+                        gradiente = -0.0065;
+                        document.querySelector("#gradiente").value = -0.0065; 
+                    }              
+                }
+
+                // Coeficiente de Refração //
+                var coef_k = parseFloat(document.querySelector("#coef_k").value);
+                if (radio_value == 1) {
+                    coef_k = (503 * pressao / temperatura ** 2) * (0.0343 + gradiente);
+                    document.querySelector("#coef_k").value = coef_k.toFixed(3);
+                } else {
+                    if (isNaN(coef_k)) {
+                        coef_k = 0.165;
+                        document.querySelector("#coef_k").value = 0.165; 
+                    }              
+                }
+
+                // Geometria //
+
+                var d_hor = ((r_terra + h_observ) ** 2 - r_terra ** 2) ** 0.5;
+                var h_oculta = (r_terra ** 2 + (d_alvo - d_hor) ** 2) ** 0.5 - r_terra;
+                d_hor = (d_hor * 0.001).toFixed(2);
+                h_oculta = h_oculta.toFixed(2);
+
+                document.querySelector("#d_hor").innerHTML = d_hor;
+                document.querySelector("#h_oculta").innerHTML = h_oculta;
+                document.querySelector("#d_alvo_result").innerHTML = (d_alvo*0.001).toFixed(2);
+                document.querySelector("#d_alvo_result2").innerHTML = (d_alvo*0.001).toFixed(2);
+
+                var h_visivel = (h_alvo - h_oculta).toFixed(2);  
+                var h_visivel_perc = ((h_visivel/h_alvo) * 100).toFixed(1);
+                var h_oculta_perc = ((h_oculta/h_alvo) * 100).toFixed(1); 
+
+                if (h_alvo != false) {   
+                    document.querySelector("#p4a").style.display="block";           
+                    document.querySelector("#h_alvo").innerHTML = h_alvo;
+                    document.querySelector("#h_visivel").innerHTML = h_visivel;
+                    document.querySelector("#h_visivel_perc").innerHTML = h_visivel_perc;
+                    document.querySelector("#h_oculta_perc").innerHTML = h_oculta_perc;
+                    document.querySelector("#h_alvo2").innerHTML = h_alvo;
+                    document.querySelector("#h_oculta2").innerHTML = h_oculta;
+                } else {
+                    document.querySelector("#p4a").style.display="none";
+                }
+
+                if (d_alvo < d_hor * 1000) {
+                    document.querySelector("#p3aa").style.display="block";
+                    document.querySelector("#p3a").style.display="none";
+                    document.querySelector("#p4a").style.display="none";
+
+                } else {
+                    document.querySelector("#p3aa").style.display="none";
+                    document.querySelector("#p3a").style.display="block";
+                }
+
+                // Refração //
+
+                var r_efetivo = r_terra /(1 - coef_k);
+                var d_hor_ref = ((r_efetivo + h_observ) ** 2 - r_efetivo ** 2) ** 0.5;
+                var h_oculta_ref = (r_efetivo ** 2 + (d_alvo - d_hor_ref) ** 2) ** 0.5 - r_efetivo;  
+                d_hor_ref = (d_hor_ref * 0.001).toFixed(2);
+                h_oculta_ref = h_oculta_ref.toFixed(2);
+                
+                document.querySelector("#d_hor_ref").innerHTML = d_hor_ref;
+                document.querySelector("#h_oculta_ref").innerHTML = h_oculta_ref;
+                document.querySelector("#d_alvo_result3").innerHTML = (d_alvo*0.001).toFixed(2);
+                document.querySelector("#d_alvo_result4").innerHTML = (d_alvo*0.001).toFixed(2);
+
+                var h_visivel_ref = (h_alvo - h_oculta_ref).toFixed(2);  
+                var h_visivel_perc_ref = ((h_visivel_ref/h_alvo) * 100).toFixed(1);
+                var h_oculta_perc_ref = ((h_oculta_ref/h_alvo) * 100).toFixed(1); 
+
+                if (h_alvo != false) {
+                    document.querySelector("#p4b").style.display="block";
+                    document.querySelector("#h_alvo_ref").innerHTML = h_alvo;
+                    document.querySelector("#h_visivel_ref").innerHTML = h_visivel_ref;
+                    document.querySelector("#h_visivel_perc_ref").innerHTML = h_visivel_perc_ref;
+                    document.querySelector("#h_oculta_perc_ref").innerHTML = h_oculta_perc_ref;
+                    document.querySelector("#h_oculta_ref2").innerHTML = h_oculta_ref;
+                } else {
+                    document.querySelector("#p4b").style.display="none";
+                } 
+
+                if (d_alvo < d_hor_ref * 1000) {
+                    document.querySelector("#p3ba").style.display="block";
+                    document.querySelector("#p3b").style.display="none";
+                    document.querySelector("#p4b").style.display="none";
+
+                } else {
+                    document.querySelector("#p3ba").style.display="none";
+                    document.querySelector("#p3b").style.display="block";
+                }
             }
-
-            /* Altura do Observador */
-            var h_observ = parseFloat(document.querySelector("#h_observ").value);
-            if (isNaN(h_observ)) {
-                h_observ = 1.75;
-                document.querySelector("#h_observ").value = 1.75;
-            }
-
-            /* Distância do Alvo */
-            var d_alvo = parseFloat(document.querySelector("#d_alvo").value);
-            if (isNaN(d_alvo)) {
-                d_alvo = 20000;
-                document.querySelector("#d_alvo").value = 20;
-            } else {
-                d_alvo = d_alvo * 1000;
-            }
-
-            /* Altura do Alvo */
-            var h_alvo = parseFloat(document.querySelector("#h_alvo").value);
-            if (isNaN(h_alvo)) {
-                h_alvo = false;
-                document.querySelector("#h_alvo").value = "";
-            }
-
-            /* Pressão Atmosférica */
-            var pressao = parseFloat(document.querySelector("#pressao").value);
-            if (radio_value == 2) {
-                document.querySelector("#pressao").value = " ";
-            } else {
-                if (isNaN(pressao)) {
-                    pressao = 101325;
-                    document.querySelector("#pressao").value = 101325; 
-                }              
-                pressao = pressao * 0.01 
-            }
-
-            /* Temperatura Ambiente */
-            var temperatura = parseFloat(document.querySelector("#temperatura").value);
-            if (radio_value == 2) {
-                document.querySelector("#temperatura").value = " ";
-            } else {
-                if (isNaN(temperatura)) {
-                    temperatura = 20;
-                    document.querySelector("#temperatura").value = 20; 
-                }              
-                temperatura = temperatura + 273.15 
-            }
-
-            /* Gradiente Vertical de Temperatura */
-            var gradiente = parseFloat(document.querySelector("#gradiente").value);
-            if (radio_value == 2) {
-                document.querySelector("#gradiente").value = " ";
-            } else {
-                if (isNaN(gradiente)) {
-                    gradiente = -0.0065;
-                    document.querySelector("#gradiente").value = -0.0065; 
-                }              
-            }
-
-            /* Coeficiente de Refração */
-            var coef_k = parseFloat(document.querySelector("#coef_k").value);
-            if (radio_value == 1) {
-                coef_k = (503 * pressao / temperatura ** 2) * (0.0343 + gradiente);
-                document.querySelector("#coef_k").value = coef_k.toFixed(3);
-            } else {
-                if (isNaN(coef_k)) {
-                    coef_k = 0.165;
-                    document.querySelector("#coef_k").value = 0.165; 
-                }              
-            }
-
-            /* Geometria */
-
-            var d_hor = ((r_terra + h_observ) ** 2 - r_terra ** 2) ** 0.5;
-            var h_oculta = (r_terra ** 2 + (d_alvo - d_hor) ** 2) ** 0.5 - r_terra;
-            d_hor = (d_hor * 0.001).toFixed(2);
-            h_oculta = h_oculta.toFixed(2);
-
-            document.querySelector("#d_hor").innerHTML = d_hor;
-            document.querySelector("#h_oculta").innerHTML = h_oculta;
-            document.querySelector("#d_alvo_result").innerHTML = (d_alvo*0.001).toFixed(2);
-
-            var h_visivel = (h_alvo - h_oculta).toFixed(2);  
-            var h_visivel_perc = ((h_visivel/h_alvo) * 100).toFixed(1);
-            var h_oculta_perc = ((h_oculta/h_alvo) * 100).toFixed(1); 
-
-            if (h_alvo != false) {   
-                document.querySelector("#p4a").style.display="block";           
-                document.querySelector("#h_alvo").innerHTML = h_alvo;
-                document.querySelector("#h_visivel").innerHTML = h_visivel;
-                document.querySelector("#h_visivel_perc").innerHTML = h_visivel_perc;
-                document.querySelector("#h_oculta_perc").innerHTML = h_oculta_perc;
-                document.querySelector("#h_alvo2").innerHTML = h_alvo;
-                document.querySelector("#h_oculta2").innerHTML = h_oculta;
-            } else {
-                document.querySelector("#p4a").style.display="none";
-            }
-
-            /* Refração */
-
-            var r_efetivo = r_terra /(1 - coef_k);
-            var d_hor_ref = ((r_efetivo + h_observ) ** 2 - r_efetivo ** 2) ** 0.5;
-            var h_oculta_ref = (r_efetivo ** 2 + (d_alvo - d_hor_ref) ** 2) ** 0.5 - r_efetivo;  
-            d_hor_ref = (d_hor_ref * 0.001).toFixed(2);
-            h_oculta_ref = h_oculta_ref.toFixed(2);
-            
-            document.querySelector("#d_hor_ref").innerHTML = d_hor_ref;
-            document.querySelector("#h_oculta_ref").innerHTML = h_oculta_ref;
-            document.querySelector("#d_alvo_result2").innerHTML = (d_alvo*0.001).toFixed(2);
-
-            var h_visivel_ref = (h_alvo - h_oculta_ref).toFixed(2);  
-            var h_visivel_perc_ref = ((h_visivel_ref/h_alvo) * 100).toFixed(1);
-            var h_oculta_perc_ref = ((h_oculta_ref/h_alvo) * 100).toFixed(1); 
-
-            if (h_alvo != false) {
-                document.querySelector("#p4b").style.display="block";
-                document.querySelector("#h_alvo_ref").innerHTML = h_alvo;
-                document.querySelector("#h_visivel_ref").innerHTML = h_visivel_ref;
-                document.querySelector("#h_visivel_perc_ref").innerHTML = h_visivel_perc_ref;
-                document.querySelector("#h_oculta_perc_ref").innerHTML = h_oculta_perc_ref;
-                document.querySelector("#h_oculta_ref2").innerHTML = h_oculta_ref;
-            } else {
-                document.querySelector("#p4b").style.display="none";
-            }    
         }
 
     </script>
