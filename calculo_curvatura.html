@@ -1,7 +1,6 @@
 <!-- VERSÃO PARA TESTES
 
 Autor: Carlos Machado Jr
-Github: https://github.com/carlosmachadojr
     
 -->
 
@@ -24,7 +23,7 @@ Github: https://github.com/carlosmachadojr
         table {
             background-color: #eeeeee;
             border-collapse: collapse;
-            border: 1px solid rgb(168, 164, 164);
+            border: 1px solid rgb(214, 214, 214);
             margin-left: 10px;
             width: 58%;
         }    
@@ -72,8 +71,8 @@ Github: https://github.com/carlosmachadojr
             background-color: white;
             border-top: 1px solid white;
             border-bottom: 1px solid white;
-            border-left: 1px solid rgb(168, 164, 164);
-            border-right: 1px solid rgb(168, 164, 164);
+            border-left: 1px solid rgb(214, 214, 214);
+            border-right: 1px solid rgb(214, 214, 214);
         }
 
         .c5 {
@@ -151,6 +150,30 @@ Github: https://github.com/carlosmachadojr
             margin: 10px;
         }
 
+        #img1 {
+            width: 55%;
+            height: 55%;
+            margin-left: 30px;
+    
+        }
+
+        .destaque {
+            font-weight: bold;
+        
+        }
+
+        .oculto {
+            font-weight: bold;
+            color: #cc3333;
+            font-size: 0.95rem;
+        }
+
+        .visivel {
+            font-weight: bold;
+            color: #18a356;
+            font-size: 0.95rem;
+        }
+
     </style>
 
 <!------------------------------------------>
@@ -176,7 +199,7 @@ Github: https://github.com/carlosmachadojr
                 <p class="result"><strong>Cálculo da Refração Atmosférica:</strong></p>
    
             </td>
-            
+         
         </tr>
     </table>
 
@@ -304,44 +327,55 @@ Github: https://github.com/carlosmachadojr
                 <p id="p1a" class="result"><strong>Desconsiderando os efeitos da refração atmosférica:</strong></p>
 
                 <p id="p2a" class="result">O horizonte se encontra a uma distância de 
-                    <spam id = "d_hor"></spam> 
-                    km do observador.</p>
+                    <spam id ="d_hor" class="destaque"></spam>do observador.
 
                 <p id="p3a" class="result">Para um alvo localizado a 
-                    <spam id = "d_alvo_result"></spam> km desse mesmo observador, há uma obstrução de 
-                    <spam id = "h_oculta"></spam> metros.</p>
+                    <spam id="d_alvo_result" class="destaque"></spam> desse mesmo observador, há uma obstrução de 
+                    <spam id="h_oculta" class="oculto"></spam></p>
 
                 <p id="p3aa" class="result">Para um alvo localizado a 
-                    <spam id = "d_alvo_result2"></spam> km desse mesmo observador se encontra AQUÉM do horizonte e portanto é <br>
+                    <spam id = "d_alvo_result2" class="destaque"></spam> desse mesmo observador se encontra AQUÉM do horizonte e portanto é <br>
                     visível em sua totalidade.</p>
 
                 <p id="p4a" class="result">A esta distância, um objeto de 
-                    <spam id = "h_alvo2"></spam> metros de altura terá 
-                    <spam id = "h_oculta_perc"></spam>% (<spam id = "h_oculta2"></spam> m) de sua altura encoberta e 
-                    <spam id = "h_visivel_perc"></spam>% ( <spam id = "h_visivel"></spam> m) visível.</p><br>
-                
-                <p id="p1b" class="result"><strong>Considerando os efeitos da refração atmosférica:</strong></p>
+                    <spam id = "h_alvo2" class="destaque"></spam>de altura tem
+                    <spam id = "h_oculta2" class="oculto"></spam> de sua altura <spam class="oculto">encoberta</spam> e 
+                    <spam id = "h_visivel" class="visivel"></spam>.</p>
+
+                <p id="p4aa" class="result">A esta distância, um objeto de 
+                    <spam id = "h_alvo3" class="destaque"></spam>de altura está <spam class = "oculto">totalmente obstruído</spam> pela curvatura da Terra, com o seu topo a <br>
+                    <spam id = "h_oculta3" class="oculto"></spam>abaixo da linha do horizonte.</p>
+                    
+                <br><p id="p1b" class="result"><strong>Considerando os efeitos da refração atmosférica:</strong></p>
 
                 <p id="p2b" class="result">O horizonte se encontra a uma distância de 
-                    <spam id = "d_hor_ref"></spam> km do observador.</p>
+                    <spam id = "d_hor_ref" class="destaque"></spam>do observador.</p>
 
                 <p id="p3b" class="result">Para um alvo localizado a 
-                    <spam id = "d_alvo_result3"></spam> km desse mesmo observador, há uma obstrução de 
-                    <spam id = "h_oculta_ref"></spam> metros.</p>
+                    <spam id = "d_alvo_result3" class="destaque"></spam>desse mesmo observador, há uma 
+                    <spam id = "h_oculta_ref" class="oculto"></spam></p>
 
                 <p id="p4b" class="result">A esta distância, um objeto de  
-                    <spam id = "h_alvo_ref"></spam> metros de altura terá 
-                    <spam id = "h_oculta_perc_ref"></spam>% (<spam id = "h_oculta_ref2"></spam> m) de sua altura encoberta e 
-                    <spam id = "h_visivel_perc_ref"></spam>% ( <spam id = "h_visivel_ref"></spam>m) visível.</p>
+                    <spam id = "h_alvo_ref" class="destaque"></spam>de altura tem
+                    <spam id = "h_oculta_ref2" class="oculto"></spam> de sua altura encoberta e 
+                    <spam id = "h_visivel_ref" class="visivel"></spam>.</p>
 
                 <p id="p3ba" class="result">Para um alvo localizado a 
                     <spam id = "d_alvo_result4"></spam> km desse mesmo observador se encontra AQUÉM do horizonte e portanto é <br>
-                    visível em sua totalidade.</p>                    
+                    visível em sua totalidade.</p> 
 
+                <p id="p4ba" class="result">A esta distância, um objeto de 
+                    <spam id = "h_alvo4" class="destaque"></spam>de altura está <spam class="oculto">totalmente obstruído</spam> pela curvatura da Terra, com o seu topo a <br>
+                    <spam id = "h_oculta4" class="oculto"></spam>abaixo da linha do horizonte.</p>
+              
             </td>
         </tr>
 
     </table>
+
+<br>
+<img src="https://i.ibb.co/sWdL8v8/curve.png" id="img1">
+
 
 <!------------------------------------------>
 
@@ -485,31 +519,40 @@ Github: https://github.com/carlosmachadojr
                 d_hor = (d_hor * 0.001).toFixed(2);
                 h_oculta = h_oculta.toFixed(2);
 
-                document.querySelector("#d_hor").innerHTML = d_hor;
-                document.querySelector("#h_oculta").innerHTML = h_oculta;
-                document.querySelector("#d_alvo_result").innerHTML = (d_alvo*0.001).toFixed(2);
-                document.querySelector("#d_alvo_result2").innerHTML = (d_alvo*0.001).toFixed(2);
+                document.querySelector("#d_hor").innerHTML = d_hor + ' km ';
+                document.querySelector("#h_oculta").innerHTML ='obstrução de ' + h_oculta + ' metros';
+                document.querySelector("#d_alvo_result").innerHTML = (d_alvo*0.001).toFixed(2) + ' km';
+                document.querySelector("#d_alvo_result2").innerHTML = (d_alvo*0.001).toFixed(2) + ' km';
 
                 var h_visivel = (h_alvo - h_oculta).toFixed(2);  
                 var h_visivel_perc = ((h_visivel/h_alvo) * 100).toFixed(1);
                 var h_oculta_perc = ((h_oculta/h_alvo) * 100).toFixed(1); 
 
-                if (h_alvo != false) {   
-                    document.querySelector("#p4a").style.display="block";           
-                    document.querySelector("#h_alvo").innerHTML = h_alvo;
-                    document.querySelector("#h_visivel").innerHTML = h_visivel;
-                    document.querySelector("#h_visivel_perc").innerHTML = h_visivel_perc;
-                    document.querySelector("#h_oculta_perc").innerHTML = h_oculta_perc;
-                    document.querySelector("#h_alvo2").innerHTML = h_alvo;
-                    document.querySelector("#h_oculta2").innerHTML = h_oculta;
+                if (h_alvo != false) {  
+                    if (h_alvo >= h_oculta) {
+                        document.querySelector("#p4a").style.display="block";           
+                        document.querySelector("#p4aa").style.display="none";
+                        document.querySelector("#h_alvo").innerHTML = h_alvo + ' metros ';
+                        document.querySelector("#h_visivel").innerHTML = h_visivel_perc + '% (' + h_visivel + ' m) visível';
+                        document.querySelector("#h_alvo2").innerHTML = h_alvo + ' metros ';
+                        document.querySelector("#h_oculta2").innerHTML = h_oculta_perc + '% (' + h_oculta + ' m) ';
+                    } else {
+                        document.querySelector("#p4a").style.display="none";  
+                        document.querySelector("#p4aa").style.display="block";           
+                        document.querySelector("#h_alvo3").innerHTML = h_alvo + ' metros ';
+                        document.querySelector("#h_oculta3").innerHTML = - h_visivel + ' metros ';
+                    }
+
                 } else {
                     document.querySelector("#p4a").style.display="none";
+                    document.querySelector("#p4aa").style.display="none";
                 }
 
                 if (d_alvo < d_hor * 1000) {
                     document.querySelector("#p3aa").style.display="block";
                     document.querySelector("#p3a").style.display="none";
                     document.querySelector("#p4a").style.display="none";
+                    document.querySelector("#p4aa").style.display="none";
 
                 } else {
                     document.querySelector("#p3aa").style.display="none";
@@ -524,30 +567,39 @@ Github: https://github.com/carlosmachadojr
                 d_hor_ref = (d_hor_ref * 0.001).toFixed(2);
                 h_oculta_ref = h_oculta_ref.toFixed(2);
                 
-                document.querySelector("#d_hor_ref").innerHTML = d_hor_ref;
-                document.querySelector("#h_oculta_ref").innerHTML = h_oculta_ref;
-                document.querySelector("#d_alvo_result3").innerHTML = (d_alvo*0.001).toFixed(2);
-                document.querySelector("#d_alvo_result4").innerHTML = (d_alvo*0.001).toFixed(2);
+                document.querySelector("#d_hor_ref").innerHTML = d_hor_ref + ' km ';
+                document.querySelector("#h_oculta_ref").innerHTML = ' obstrução de ' + h_oculta_ref + ' metros.';
+                document.querySelector("#d_alvo_result3").innerHTML = (d_alvo*0.001).toFixed(2) + ' km ';
+                document.querySelector("#d_alvo_result4").innerHTML = (d_alvo*0.001).toFixed(2) + ' km ';
 
                 var h_visivel_ref = (h_alvo - h_oculta_ref).toFixed(2);  
                 var h_visivel_perc_ref = ((h_visivel_ref/h_alvo) * 100).toFixed(1);
                 var h_oculta_perc_ref = ((h_oculta_ref/h_alvo) * 100).toFixed(1); 
 
                 if (h_alvo != false) {
+                    if (h_alvo >= h_oculta_ref) {
                     document.querySelector("#p4b").style.display="block";
-                    document.querySelector("#h_alvo_ref").innerHTML = h_alvo;
-                    document.querySelector("#h_visivel_ref").innerHTML = h_visivel_ref;
-                    document.querySelector("#h_visivel_perc_ref").innerHTML = h_visivel_perc_ref;
-                    document.querySelector("#h_oculta_perc_ref").innerHTML = h_oculta_perc_ref;
-                    document.querySelector("#h_oculta_ref2").innerHTML = h_oculta_ref;
+                    document.querySelector("#p4ba").style.display="none";                      
+                    document.querySelector("#h_alvo_ref").innerHTML = h_alvo + ' metros ';
+                    document.querySelector("#h_visivel_ref").innerHTML = h_visivel_perc_ref + '% (' + h_visivel_ref + ' m) visível';
+                    document.querySelector("#h_oculta_ref2").innerHTML = h_oculta_perc_ref + '% (' + h_oculta_ref + ' m)';
+                    } else {
+                        document.querySelector("#p4b").style.display="none";  
+                        document.querySelector("#p4ba").style.display="block";           
+                        document.querySelector("#h_alvo4").innerHTML = h_alvo + ' metros ';
+                        document.querySelector("#h_oculta4").innerHTML = - h_visivel_ref + ' metros ';
+                    }
+
                 } else {
                     document.querySelector("#p4b").style.display="none";
+                    document.querySelector("#p4ba").style.display="none";  
                 } 
 
                 if (d_alvo < d_hor_ref * 1000) {
                     document.querySelector("#p3ba").style.display="block";
                     document.querySelector("#p3b").style.display="none";
                     document.querySelector("#p4b").style.display="none";
+                    document.querySelector("#p4ba").style.display="none";  
 
                 } else {
                     document.querySelector("#p3ba").style.display="none";
@@ -555,7 +607,7 @@ Github: https://github.com/carlosmachadojr
                 }
             }
         }
-
+        
     </script>
 
 </body>
